@@ -1,3 +1,151 @@
+:root {
+  --background-color: #272727;
+  --primary-color: #c4c4c4;
+  --secondary-color: #5c5c5c;
+  --tertiary-color: #8b8888;
+  --quaternary-color: #ececec;
+
+  --font-color-dark: #000000;
+  --font-color-light: #ececec;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
 body {
-  background: gray;
+  background: var(--background-color);
+  color: var(--font-color-dark);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
+  font-size: 1.8rem;
+  height: 100vh;
+}
+
+.container {
+  background: var(--primary-color);
+  height: 100%;
+  width: 100%;
+  max-width: 1210px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+.main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: grid;
+}
+
+.title {
+  grid-row: 1;
+  grid-column: 1;
+  font-size: 1.4rem;
+  padding: 1em;
+  background: var(--primary-color);
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+.title .fas {
+  font-size: 1.8rem;
+  margin-right: 0.5em;
+}
+
+.nav-toggle {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.nav-modules-open,
+.nav-tools-open {
+  margin: 0 0.5em;
+  font-size: 3rem;
+}
+
+.nav-modules-open .fas,
+.nav-tools-open .fas {
+  margin: 0 0.5em;
+}
+
+.modules,
+.tools {
+  display: none;
+}
+
+.module {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.module--title {
+  background: var(--secondary-color);
+  font-size: 1.8rem;
+  color: var(--font-color-light);
+  padding: 1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+}
+
+.module--title .fas {
+  margin: 0 0.5em;
+}
+
+.module--container {
+  background: var(--primary-color);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 145px);
+}
+
+.search-form {
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 0.2em 0.2em;
+}
+
+.search-label {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.search-input {
+  font-size: 1.8rem;
+  width: 100%;
+  padding: 0.2em;
+  margin: 0;
+  align-self: center;
 }
