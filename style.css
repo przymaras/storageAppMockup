@@ -44,7 +44,7 @@ h1,
 h2,
 h3,
 p {
-  margin-top: 0;
+  margin: 0;
 }
 
 .main {
@@ -90,18 +90,6 @@ header {
   font-size: 3rem;
   background: transparent;
   border: none;
-  cursor: pointer;
-}
-
-.nav-toggle--button:hover {
-  outline: 1px solid var(--font-color-dark);
-  border-radius: 6px;
-}
-
-.nav-toggle--button:active {
-  transform: scale(0.93);
-  border: 1px solid var(--font-color-dark);
-  border-radius: 6px;
 }
 
 .nav-tools,
@@ -130,6 +118,116 @@ header {
   transform: translateX(-50%);
 }
 
+.nav-container {
+  padding: 0;
+  margin: 0;
+  background: var(--primary-color);
+  width: 255px;
+  height: calc(100% - 48px);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-modules .nav-container {
+  left: 0;
+}
+
+.nav-tools .nav-container {
+  right: 0;
+}
+
+.nav-tools--btns {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-btn {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.75em 1.5em;
+  margin: 0.2em 0;
+  background: var(--tertiary-color);
+  display: flex;
+  align-items: center;
+}
+
+.nav-btn .fas,
+.nav-btn .fab {
+  font-size: 3rem;
+  margin-right: 0.5em;
+}
+
+.tools-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 0.2em;
+}
+
+.filter-container {
+  width: 100%;
+  font-size: 2rem;
+  margin-bottom: 0.2em;
+}
+
+.filter {
+  background: var(--quaternary-color);
+  padding: 0.2em 0.2em 0.5em 0.2em;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.filter-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.filter-btn .fas {
+  font-size: 3rem;
+}
+
+.filter-opt {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0.2em;
+}
+
+.filter-opt * {
+  font-size: 2.5rem;
+}
+
+.filter-opt select {
+  width: 100%;
+  margin-left: 0.3em;
+}
+
+#arch-checkbox {
+  transform: scale(2);
+  margin-right: 0.4em;
+}
+
+.btn {
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  outline: 1px solid var(--font-color-dark);
+  border-radius: 6px;
+}
+
+.btn:active {
+  transform: scale(0.93);
+  outline: 1px solid var(--font-color-dark);
+  border-radius: 6px;
+}
+
 /* Module classes */
 
 .module {
@@ -138,7 +236,8 @@ header {
   padding: 0;
 }
 
-.module--title {
+.section-title {
+  width: 100%;
   background: var(--secondary-color);
   font-size: 1.8rem;
   color: var(--font-color-light);
@@ -148,7 +247,7 @@ header {
   margin: 0;
 }
 
-.module--title .fas {
+.section-title .fas {
   margin: 0 0.5em;
 }
 

@@ -2,9 +2,10 @@ const toolsBtn = document.getElementById("nav-tools-open-btn");
 const modulesBtn = document.getElementById("nav-modules-open-btn");
 const navTools = document.getElementById("nav-tools");
 const navModules = document.getElementById("nav-modules");
+const filterForm = document.getElementById("filter");
 
 // initially remove hide from tools for development
-// navTools.classList.remove("hide");
+navTools.classList.remove("hide");
 
 toolsBtn.addEventListener("click", (e) => {
   toggleNavTools();
@@ -14,6 +15,10 @@ toolsBtn.addEventListener("click", (e) => {
 modulesBtn.addEventListener("click", (e) => {
   toggleNavModules();
   hideNavTools();
+});
+
+filterForm.addEventListener("submit", (e) => {
+  e.preventDefault();
 });
 
 function toggleNavTools() {
