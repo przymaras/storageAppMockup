@@ -82,19 +82,28 @@ header {
   position: relative;
 }
 
-.nav-modules-open,
-.nav-tools-open {
-  margin: 0 0.5em;
+.nav-toggle--button {
+  align-self: center;
+  padding: 0.1em;
+  margin: 0 0.1em;
   font-size: 3rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-.nav-modules-open .fas,
-.nav-tools-open .fas {
-  margin: 0 0.5em;
+.nav-toggle--button:hover {
+  outline: 1px solid var(--font-color-dark);
+  border-radius: 6px;
 }
 
-.modules,
-.tools {
+.nav-toggle--button:active {
+  transform: scale(0.93);
+  border: 1px solid var(--font-color-dark);
+  border-radius: 6px;
+}
+
+.hide {
   display: none;
 }
 
