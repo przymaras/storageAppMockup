@@ -4,8 +4,11 @@ const navTools = document.getElementById("nav-tools");
 const navModules = document.getElementById("nav-modules");
 const filterForm = document.getElementById("filter");
 
-// initially remove hide from tools for development
-navTools.classList.remove("hide");
+let buttonsGroups = document.getElementsByClassName("nav-buttons-group");
+buttonsGroups = [...buttonsGroups]; // convert HTML collection to array
+
+let buttons = document.getElementsByClassName("nav-btn");
+buttons = [...buttons]; // convert HTML collection to array
 
 toolsBtn.addEventListener("click", (e) => {
   toggleNavTools();
@@ -20,6 +23,30 @@ modulesBtn.addEventListener("click", (e) => {
 filterForm.addEventListener("submit", (e) => {
   e.preventDefault();
 });
+
+buttonsGroups.forEach((e) =>
+  e.addEventListener("click", () => {
+    foldAllButtonGroups();
+    e.classList.remove("folded");
+  })
+);
+
+buttons.forEach((btn) =>
+  btn.addEventListener("click", () => {
+    foldAllButtonGroups();
+    console.log("clicked!");
+  })
+);
+
+// =============================
+
+function foldAllButtonGroups() {
+  buttonsGroups.forEach((element) => {
+    if (!element.classList.contains("folded")) {
+      element.classList.add("folded");
+    }
+  });
+}
 
 function toggleNavTools() {
   if (navTools.classList.contains("hide")) {
@@ -48,3 +75,22 @@ function hideNavModules() {
     navModules.classList.add("hide");
   }
 }
+
+function setButtonsGroupsHeights() {
+  //calculate height of class elements .nav-buttons-group
+  //for CSS transition proper working
+
+  const groupContainerHeight = 64;
+  const buttonHeightWithMargin = 68;
+
+  buttonsGroups.forEach(
+    (buttonsGroup) =>
+      (buttonsGroup.style.height = `${
+        groupContainerHeight +
+        [...[...buttonsGroup.children][1].children].length *
+          buttonHeightWithMargin
+      }px`)
+  );
+}
+
+setButtonsGroupsHeights();

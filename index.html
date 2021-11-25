@@ -30,25 +30,67 @@
         </div>
       </header>
       <main class="main">
-        <nav class="nav-modules hide" id="nav-modules">
-          <div class="nav-container">
+        <nav class="nav-overlay hide" id="nav-modules">
+          <div class="nav-toolbar">
             <h2 class="section-title">
-              <i class="fas fa-tools"></i>
+              <i class="fas fa-toolbox"></i>
               MODUŁY
-              <i class="fas fa-tools"></i>
+              <i class="fas fa-toolbox"></i>
             </h2>
+            <div class="nav-tools-container">
+              <div class="nav-buttons">
+                <div class="nav-buttons-group folded" id="buttons-group-1">
+                  <h2 class="group-title">
+                    <i class="fas fa-box"></i>
+                    GRUPA 1
+                  </h2>
+                  <div class="nav-buttons">
+                    <button class="nav-btn grouped btn" id="nav-btn-module1">
+                      <i class="fab fa-algolia"></i>MODUŁ 1
+                    </button>
+                    <button class="nav-btn grouped btn" id="nav-btn-module2">
+                      <i class="fab fa-algolia"></i>MODUŁ 2
+                    </button>
+                    <button class="nav-btn grouped btn" id="nav-btn-module3">
+                      <i class="fab fa-algolia"></i>MODUŁ 3
+                    </button>
+                  </div>
+                </div>
+
+                <button class="nav-btn btn" id="nav-btn-module3">
+                  <i class="fab fa-algolia"></i>MODUŁ 3
+                </button>
+                <button class="nav-btn btn" id="nav-btn-module4">
+                  <i class="fab fa-algolia"></i>MODUŁ 4
+                </button>
+                <div class="nav-buttons-group folded" id="buttons-group-2">
+                  <h2 class="group-title">
+                    <i class="fas fa-box"></i>
+                    GRUPA 2
+                  </h2>
+                  <div class="nav-buttons">
+                    <button class="nav-btn grouped btn" id="nav-btn-module5">
+                      <i class="fab fa-algolia"></i>MODUŁ 5
+                    </button>
+                    <button class="nav-btn grouped btn" id="nav-btn-module6">
+                      <i class="fab fa-algolia"></i>MODUŁ 6
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </nav>
 
-        <nav class="nav-tools hide" id="nav-tools">
-          <div class="nav-container">
+        <nav class="nav-overlay hide" id="nav-tools">
+          <div class="nav-toolbar">
             <h2 class="section-title">
               <i class="fas fa-tools"></i>
               NARZĘDZIA
               <i class="fas fa-tools"></i>
             </h2>
-            <div class="tools-container">
-              <div class="nav-tools--btns">
+            <div class="nav-tools-container">
+              <div class="nav-buttons">
                 <button class="nav-btn btn" id="nav-btn-tool1">
                   <i class="fas fa-address-card"></i>
                   <p>NARZĘDZIE 1</p>
@@ -58,7 +100,7 @@
                 </button>
               </div>
 
-              <div class="filter-container">
+              <div class="nav-filter-container">
                 <form action="#" class="filter" id="filter">
                   <div class="filter-header">
                     <button type="reset" class="filter-btn btn">
