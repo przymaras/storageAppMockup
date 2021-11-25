@@ -51,6 +51,7 @@ p {
   width: 100%;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
 header {
@@ -103,9 +104,33 @@ header {
   border-radius: 6px;
 }
 
-.hide {
-  display: none;
+.nav-tools,
+.nav-modules {
+  position: fixed;
+  z-index: 9999;
+  background: rgba(150, 150, 150, 0.8);
+  width: 100%;
+  height: 100%;
+  transition: all 250ms;
+  transform: translateX(0);
+  opacity: 1;
+  visibility: unset;
 }
+
+.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.nav-tools.hide {
+  transform: translateX(50%);
+}
+
+.nav-modules.hide {
+  transform: translateX(-50%);
+}
+
+/* Module classes */
 
 .module {
   width: 100%;
@@ -190,7 +215,7 @@ header {
   border: 1px solid var(--secondary-color);
 }
 
-.module--row.heading {
+.row-sticky {
   position: sticky;
   top: 0;
   z-index: 999;
