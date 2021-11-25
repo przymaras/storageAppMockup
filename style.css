@@ -158,3 +158,113 @@ header {
   margin: 0;
   align-self: center;
 }
+
+.module--row {
+  display: grid;
+  grid-template: repeat(4, auto) / 40px 1fr 1fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr 1fr;
+  grid-template-areas:
+    "cbox name name name name name name name name"
+    "cbox aaaa bbbb cccc cccc dddd dddd eeee ffff"
+    "cbox gggg hhhh hhhh hhhh hhhh iiii iiii iiii"
+    "jjjj jjjj kkkk kkkk llll llll llll llll llll";
+  max-width: 100%;
+  padding: 0.1em 0.2em;
+  background: var(--primary-color);
+}
+
+.module--row input[type="checkbox"] {
+  transform: scale(2);
+}
+
+.module--row .cell {
+  margin: -1px;
+  padding: 0.1em;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* overflow-wrap: break-word; */
+  /* hyphens: auto; */
+  /* font-weight: bold; */
+  border: 1px solid var(--secondary-color);
+}
+
+.module--row.heading {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.module--row.heading .cell {
+  background: var(--tertiary-color);
+  color: var(--font-color-light);
+  font-size: 1.2rem;
+  letter-spacing: 0.03em;
+}
+
+.module--row .cell {
+  background: var(--primary-color);
+  color: var(--font-color-dark);
+  font-weight: bold;
+}
+
+.module--row:nth-child(even) .cell {
+  background: var(--quaternary-color);
+}
+
+.module--row .cell:nth-child(1) {
+  grid-area: cbox;
+}
+
+.module--row .cell:nth-child(2) {
+  grid-area: name;
+}
+
+.module--row .cell:nth-child(3) {
+  grid-area: aaaa;
+}
+
+.module--row .cell:nth-child(4) {
+  grid-area: bbbb;
+}
+
+.module--row .cell:nth-child(5) {
+  grid-area: cccc;
+}
+
+.module--row .cell:nth-child(6) {
+  grid-area: dddd;
+}
+
+.module--row .cell:nth-child(7) {
+  grid-area: eeee;
+}
+
+.module--row .cell:nth-child(8) {
+  grid-area: ffff;
+}
+
+.module--row .cell:nth-child(9) {
+  grid-area: gggg;
+}
+
+.module--row .cell:nth-child(10) {
+  grid-area: hhhh;
+}
+
+.module--row .cell:nth-child(11) {
+  grid-area: iiii;
+}
+
+.module--row .cell:nth-child(12) {
+  grid-area: jjjj;
+}
+
+.module--row .cell:nth-child(13) {
+  grid-area: kkkk;
+}
+
+.module--row .cell:nth-child(14) {
+  grid-area: llll;
+}
