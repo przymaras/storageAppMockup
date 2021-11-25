@@ -1,4 +1,6 @@
 :root {
+  --main-container-max-width: 1410px;
+
   --background-color: #272727;
   --primary-color: #c4c4c4;
   --primary-color-darker: #8b8888;
@@ -33,7 +35,7 @@ body {
   background: var(--primary-color);
   height: 100%;
   width: 100%;
-  max-width: 1210px;
+  max-width: var(--main-container-max-width);
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -98,7 +100,7 @@ header {
   background: rgba(150, 150, 150, 0.8);
   width: 100%;
   height: 100%;
-  max-width: 1210px;
+  max-width: var(--main-container-max-width);
   transition: all 250ms;
   transform: translateX(0);
   opacity: 1;
@@ -442,4 +444,152 @@ header {
 
 .module--row .cell:nth-child(14) {
   grid-area: llll;
+}
+
+@media (min-width: 1210px) {
+  body {
+    padding: 0 5px;
+  }
+
+  .main {
+    display: flex;
+  }
+
+  .nav-overlay {
+    position: unset;
+    z-index: unset;
+    background: unset;
+    width: unset;
+    height: unset;
+    max-width: unset;
+    transition: unset;
+    transform: unset;
+    opacity: unset;
+    visibility: unset;
+  }
+
+  .hide {
+    visibility: unset;
+    opacity: unset;
+  }
+
+  #nav-tools.hide {
+    transform: unset;
+  }
+
+  #nav-modules.hide {
+    transform: unset;
+  }
+
+  .nav-toolbar {
+    position: unset;
+    height: 100%;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+  }
+
+  #nav-modules {
+    order: -1;
+    padding-right: 5px;
+  }
+
+  #nav-tools {
+    order: 3;
+    padding-left: 5px;
+  }
+
+  #nav-modules .nav-toolbar {
+    left: unset;
+  }
+
+  #nav-tools .nav-toolbar {
+    right: unset;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .filter-opt {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5em 0.2em;
+  }
+
+  .filter-opt * {
+    font-size: 2rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    padding: 0.3em;
+    text-align: left;
+    letter-spacing: 0.6em;
+    margin: 0.2em 0;
+    border-radius: 6px;
+  }
+
+  .title .fas {
+    font-size: 3rem;
+    margin-left: 0.5em;
+  }
+
+  .container {
+    background: none;
+    height: 100%;
+    width: 100%;
+    max-width: var(--main-container-max-width);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  .module--container {
+    height: 100%;
+    height: calc(100vh - 172px);
+  }
+
+  .section-title {
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+  }
+
+  .module--row {
+    grid-template: repeat(2, auto) / 40px repeat(5, 0.33fr) 1fr 1fr 0.5fr 0.5fr;
+    grid-template-areas: unset;
+    grid-template-areas:
+      "cbox gggg name name name name name name jjjj kkkk"
+      "aaaa bbbb cccc dddd eeee ffff hhhh iiii llll llll";
+  }
+
+  .module--row .cell:nth-child(2) {
+    grid-area: name;
+    justify-content: start;
+  }
+
+  .module--row input[type="checkbox"] {
+    transform: scale(1.2);
+  }
+
+  .module--row.heading .cell {
+    background: var(--primary-color-darker);
+    color: var(--font-color-light);
+    font-size: 1.2rem;
+    letter-spacing: 0.03em;
+  }
+
+  .module--row .cell {
+    margin: -0.4px;
+    font-weight: unset;
+  }
+
+  .filter-header h2 {
+    font-size: 2.5rem;
+  }
+
+  #arch-checkbox {
+    transform: scale(1.5);
+    margin-right: 0.2em;
+  }
 }

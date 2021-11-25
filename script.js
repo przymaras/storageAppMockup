@@ -94,3 +94,32 @@ function setButtonsGroupsHeights() {
 }
 
 setButtonsGroupsHeights();
+
+const rowHTML = `<div class="module--row">
+<div class="cell">
+  <input type="checkbox" name="row-title" id="row-1-checkbox" />
+</div>
+<div class="cell" id="">
+  KONWERTER USB - RS232 UART FT232RL FTDI
+</div>
+<div class="cell" id="">szt.</div>
+<div class="cell" id="">1000</div>
+<div class="cell" id="">1000</div>
+<div class="cell" id="">1000</div>
+<div class="cell" id="">1000</div>
+<div class="cell" id="">22,35</div>
+<div class="cell" id="">10001</div>
+<div class="cell" id="">TME Sp z o.o.</div>
+<div class="cell" id="">CB-HFT6.4/1M-RD</div>
+<div class="cell" id="">Surowiec</div>
+<div class="cell" id="">MODUŁY</div>
+<div class="cell" id="">Długi termin</div>
+</div>`;
+
+let rowsHTML = "";
+
+for (let i = 0; i < 500; i++) {
+  rowsHTML += rowHTML;
+}
+
+document.getElementById("module-container").innerHTML += rowsHTML;
