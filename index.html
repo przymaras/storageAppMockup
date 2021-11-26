@@ -14,23 +14,23 @@
   <body>
     <div class="container">
       <header>
-        <h1 class="title">
+        <h1 class="header-title">
           <i class="fas fa-warehouse"></i>Bikel.pl storage App
         </h1>
         <div class="nav-toggle">
           <button class="nav-toggle--button btn" id="nav-modules-open-btn">
             <i class="fas fa-toolbox"></i>
-            <i class="far fa-caret-square-right"></i>
+            <i class="far fa-caret-square-down"></i>
           </button>
 
           <button class="nav-toggle--button btn" id="nav-tools-open-btn">
-            <i class="far fa-caret-square-left"></i>
+            <i class="far fa-caret-square-down"></i>
             <i class="fas fa-tools"></i>
           </button>
         </div>
       </header>
       <main class="main">
-        <nav class="nav-overlay hide" id="nav-modules">
+        <nav class="nav-overlay hide-overlay" id="nav-modules">
           <div class="nav-toolbar">
             <h2 class="section-title">
               <i class="fas fa-toolbox"></i>
@@ -39,17 +39,36 @@
             </h2>
             <div class="nav-tools-container">
               <div class="nav-buttons">
-                <div class="nav-buttons-group folded" id="buttons-group-1">
+                <div
+                  class="nav-buttons-group buttons-group-folded"
+                  id="buttons-group-1"
+                >
                   <h2 class="group-title">
+                    <i class="fas fa-angle-double-down"></i>
                     <i class="fas fa-box"></i>
                     GRUPA 1
                   </h2>
-                  <div class="nav-buttons">
+                  <div class="nav-buttons no-overflow">
                     <button class="nav-btn grouped btn" id="nav-btn-module1">
                       <i class="fab fa-algolia"></i>MODUŁ 1
                     </button>
                     <button class="nav-btn grouped btn" id="nav-btn-module2">
                       <i class="fab fa-algolia"></i>MODUŁ 2
+                    </button>
+                    <button class="nav-btn grouped btn" id="nav-btn-module3">
+                      <i class="fab fa-algolia"></i>MODUŁ 3
+                    </button>
+                    <button class="nav-btn grouped btn" id="nav-btn-module3">
+                      <i class="fab fa-algolia"></i>MODUŁ 3
+                    </button>
+                    <button class="nav-btn grouped btn" id="nav-btn-module3">
+                      <i class="fab fa-algolia"></i>MODUŁ 3
+                    </button>
+                    <button class="nav-btn grouped btn" id="nav-btn-module3">
+                      <i class="fab fa-algolia"></i>MODUŁ 3
+                    </button>
+                    <button class="nav-btn grouped btn" id="nav-btn-module3">
+                      <i class="fab fa-algolia"></i>MODUŁ 3
                     </button>
                     <button class="nav-btn grouped btn" id="nav-btn-module3">
                       <i class="fab fa-algolia"></i>MODUŁ 3
@@ -63,12 +82,17 @@
                 <button class="nav-btn btn" id="nav-btn-module4">
                   <i class="fab fa-algolia"></i>MODUŁ 4
                 </button>
-                <div class="nav-buttons-group folded" id="buttons-group-2">
+
+                <div
+                  class="nav-buttons-group buttons-group-folded"
+                  id="buttons-group-2"
+                >
                   <h2 class="group-title">
+                    <i class="fas fa-angle-double-down"></i>
                     <i class="fas fa-box"></i>
                     GRUPA 2
                   </h2>
-                  <div class="nav-buttons">
+                  <div class="nav-buttons no-overflow">
                     <button class="nav-btn grouped btn" id="nav-btn-module5">
                       <i class="fab fa-algolia"></i>MODUŁ 5
                     </button>
@@ -82,7 +106,7 @@
           </div>
         </nav>
 
-        <nav class="nav-overlay hide" id="nav-tools">
+        <nav class="nav-overlay hide-overlay" id="nav-tools">
           <div class="nav-toolbar">
             <h2 class="section-title">
               <i class="fas fa-tools"></i>
@@ -98,46 +122,67 @@
                 <button class="nav-btn btn" id="nav-btn-tool2">
                   <i class="fab fa-algolia"></i>NARZĘDZIE 2
                 </button>
+                <button class="nav-btn btn" id="nav-btn-tool3">
+                  <i class="fab fa-algolia"></i>NARZĘDZIE 3
+                </button>
+                <button class="nav-btn btn" id="nav-btn-tool4">
+                  <i class="fab fa-algolia"></i>NARZĘDZIE 4
+                </button>
+                <button class="nav-btn btn" id="nav-btn-tool5">
+                  <i class="fab fa-algolia"></i>NARZĘDZIE 5
+                </button>
               </div>
 
               <div class="nav-filter-container">
                 <form action="#" class="filter" id="filter">
+                  <div
+                    class="filter-options filter-options-folded"
+                    id="filter-options"
+                  >
+                    <div class="filter-opt chbox">
+                      <label for="arch">Archiwalne</label>
+                      <input type="checkbox" name="arch" id="arch-checkbox" />
+                    </div>
+                    <div class="filter-opt select">
+                      <label for="type">Typ:</label>
+                      <select name="type" id="type">
+                        <option value="wszystkie">Wszystkie</option>
+                        <option value="surowiec">Surowiec</option>
+                        <option value="produkt">Produkt</option>
+                      </select>
+                    </div>
+                    <div class="filter-opt select">
+                      <label for="group">Grupa:</label>
+                      <select name="group" id="group">
+                        <option value="wszystkie">Wszystkie</option>
+                        <option value="elektronika">Elektronika</option>
+                        <option value="Gotowe">Gotowe</option>
+                      </select>
+                    </div>
+                    <div class="filter-opt select">
+                      <label for="supplier">Dostawca:</label>
+                      <select name="supplier" id="supplier">
+                        <option value="wszystkie">Wszystkie</option>
+                        <option value="tme">TME Sp. z o.o.</option>
+                        <option value="piekarz">Piekarz s.j.</option>
+                      </select>
+                    </div>
+                  </div>
                   <div class="filter-header">
                     <button type="reset" class="filter-btn btn">
                       <i class="fas fa-window-close"></i>
                     </button>
-                    <h2>Filtr</h2>
+                    <button
+                      class="filter-options-toggle-btn btn"
+                      id="filter-options-toggle-btn"
+                    >
+                      <i class="fas fa-angle-double-up"></i>
+                      <i class="fas fa-filter"></i>
+                      Filtr
+                    </button>
                     <button type="submit" class="filter-btn btn">
                       <i class="fas fa-check-square"></i>
                     </button>
-                  </div>
-                  <div class="filter-opt chbox">
-                    <label for="arch">Pokazuj archiwalne</label>
-                    <input type="checkbox" name="arch" id="arch-checkbox" />
-                  </div>
-                  <div class="filter-opt select">
-                    <label for="type">Typ:</label>
-                    <select name="type" id="type">
-                      <option value="wszystkie">Wszystkie</option>
-                      <option value="surowiec">Surowiec</option>
-                      <option value="produkt">Produkt</option>
-                    </select>
-                  </div>
-                  <div class="filter-opt select">
-                    <label for="group">Grupa:</label>
-                    <select name="group" id="group">
-                      <option value="wszystkie">Wszystkie</option>
-                      <option value="elektronika">Elektronika</option>
-                      <option value="Gotowe">Gotowe</option>
-                    </select>
-                  </div>
-                  <div class="filter-opt select">
-                    <label for="supplier">Dostawca:</label>
-                    <select name="supplier" id="supplier">
-                      <option value="wszystkie">Wszystkie</option>
-                      <option value="tme">TME Sp. z o.o.</option>
-                      <option value="piekarz">Piekarz s.j.</option>
-                    </select>
                   </div>
                 </form>
               </div>
@@ -185,7 +230,7 @@
               <div class="cell" id="">Uwagi</div>
             </div>
 
-            <div class="module--row">
+            <!-- <div class="module--row">
               <div class="cell">
                 <input type="checkbox" name="row-title" id="row-1-checkbox" />
               </div>
@@ -204,8 +249,8 @@
               <div class="cell" id="">Surowiec</div>
               <div class="cell" id="">MODUŁY</div>
               <div class="cell" id="">Długi termin</div>
-            </div>
-
+            </div> -->
+          </div>
         </section>
       </main>
     </div>

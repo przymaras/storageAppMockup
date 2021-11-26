@@ -1,5 +1,7 @@
 :root {
   --main-container-max-width: 1410px;
+  --main-container-max-width-mobile: 750px;
+  --main-container-max-width-super-wide: 2200px;
 
   --background-color: #272727;
   --primary-color: #c4c4c4;
@@ -35,11 +37,9 @@ body {
   background: var(--primary-color);
   height: 100%;
   width: 100%;
-  max-width: var(--main-container-max-width);
+  max-width: var(--main-container-max-width-mobile);
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding: 0;
 }
 
 h1,
@@ -50,30 +50,42 @@ p {
 }
 
 .main {
-  width: 100%;
-  margin: 0;
-  padding: 0;
   position: relative;
+  display: flex;
+  flex-grow: 1;
 }
 
 header {
   display: grid;
 }
 
-.title {
+.header-title {
   grid-row: 1;
   grid-column: 1;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   padding: 1em;
   background: var(--primary-color);
-  width: 100%;
   text-align: center;
-  margin: 0;
+  z-index: 9999;
 }
 
-.title .fas {
-  font-size: 1.8rem;
+.header-title .fas {
+  font-size: 1.1em;
   margin-right: 0.5em;
+}
+
+.section-title {
+  width: 100%;
+  background: var(--primary-color-dark);
+  font-size: 1.8rem;
+  color: var(--font-color-light);
+  padding: 0.5em 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.section-title .fas {
+  margin: 0 0.5em;
 }
 
 .nav-toggle {
@@ -83,6 +95,7 @@ header {
   display: flex;
   justify-content: space-between;
   position: relative;
+  z-index: 9999;
 }
 
 .nav-toggle--button {
@@ -95,41 +108,43 @@ header {
 }
 
 .nav-overlay {
-  position: fixed;
-  z-index: 9999;
+  position: absolute;
+  z-index: 9998;
   background: rgba(150, 150, 150, 0.8);
-  width: 100%;
-  height: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   max-width: var(--main-container-max-width);
   transition: all 250ms;
   transform: translateX(0);
+  transform: translateY(0);
   opacity: 1;
   visibility: unset;
 }
 
-.hide {
+.hide-overlay {
+  position: fixed;
+  transform: translateY(-50%);
   visibility: hidden;
   opacity: 0;
 }
 
-#nav-tools.hide {
-  transform: translateX(50%);
-}
-
-#nav-modules.hide {
-  transform: translateX(-50%);
+#nav-modules,
+#nav-tools {
+  flex-grow: 1; /* stretch height of item to fill rest of free space  (need flex / column parent) with set height */
+  display: flex;
+  flex-direction: column;
 }
 
 .nav-toolbar {
-  padding: 0;
-  margin: 0;
-  background: var(--primary-color);
-  width: 255px;
-  height: calc(100% - 48px);
-  position: absolute;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-grow: 1;
+  background: var(--primary-color);
+  width: 255px;
+  position: absolute;
+  height: 100%;
 }
 
 #nav-modules .nav-toolbar {
@@ -140,11 +155,27 @@ header {
   right: 0;
 }
 
+.nav-tools-container {
+  flex-grow: 1; /* stretch height of item to fill rest of free space  (need flex / column parent) with set height */
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
 .nav-buttons {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  transition: all 750ms;
+  transition: all 500ms;
+  flex-grow: 1; /* stretch height of item to fill rest of free space  (need flex / column parent) with set height */
+  height: 80px; /* important for overflow scrolling to work with flex! (it works actually as min height) */
+  overflow-y: auto;
+  padding: 0 5px;
+  position: relative;
+}
+
+.no-overflow {
+  height: unset;
+  overflow-y: unset;
 }
 
 .group-title {
@@ -155,77 +186,78 @@ header {
   justify-content: center;
   padding: 0.6em;
   font-size: 2rem;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
 }
 
 .group-title .fas {
-  margin: 0 0.5em 0 0;
-  font-size: 3rem;
+  margin: 0 0.7em 0 0;
+  transform: scale(
+    1.3
+  ); /*scale does not affect button height in JS calculations */
 }
 
 .nav-buttons-group {
-  width: 240px;
-  margin-top: 0.2em;
+  margin: 0.2em 0;
   background: var(--primary-color-darker);
-  padding: 0.2em;
+  padding: 3px;
   border-radius: 6px;
-  /* height: 200px; it is calculated in JS function setButtonsGroupsHeights() */
+  /* height: 200px; it is calculated in JS function setButtonsGroupsHeights() for transition to work properly*/
   transition: height 500ms;
+  display: flex;
+  flex-direction: column;
 }
 
-.folded {
-  height: 60px !important;
+.buttons-group-folded {
+  height: 60px !important; /* "auto" disables transition */
 }
 
-.folded .nav-buttons {
-  /* display: none; */
+.buttons-group-folded .nav-buttons {
   visibility: hidden;
   opacity: 0;
-  position: fixed;
+  position: absolute;
+  left: 0;
+  right: 0;
   height: 0;
   transform: translateY(-50px);
 }
 
 .nav-btn {
-  width: 240px;
   font-size: 2rem;
   font-weight: bold;
-  padding: 0.75em 1.5em;
-  margin: 0.2em 0;
+  padding: 0.75em 0;
+  margin: 4px 0;
   background: var(--primary-color-darker);
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--font-color-dark);
 }
 
 .grouped {
   background: var(--primary-color-dark);
   color: var(--font-color-light);
-  width: 220px;
+  flex-grow: 0;
+  overflow: unset;
+  height: unset;
 }
 
 .nav-btn .fas,
 .nav-btn .fab {
-  font-size: 3rem;
-  margin-right: 0.5em;
-}
-
-.nav-tools-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0 0.2em;
+  margin: 0 1em 0 0;
+  transform: scale(
+    1.5
+  ); /*scale does not affect button height in JS calculations */
 }
 
 .nav-filter-container {
-  width: 100%;
-  font-size: 2rem;
+  margin: 0 5px;
   margin-bottom: 0.2em;
 }
 
 .filter {
   background: var(--primary-color-light);
-  padding: 0.2em 0.2em 0.5em 0.2em;
+  padding: 0.2em;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
@@ -234,17 +266,18 @@ header {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1em;
 }
 
 .filter-btn .fas {
-  font-size: 3rem;
+  font-size: 2em;
 }
 
 .filter-opt {
   display: flex;
   justify-content: space-between;
-  margin: 1em 0.2em;
+  align-items: center;
+  margin: 0.2em;
+  margin-bottom: 0.7em;
 }
 
 .filter-opt * {
@@ -252,6 +285,7 @@ header {
 }
 
 .filter-opt select {
+  font-family: Roboto, sans-serif;
   width: 100%;
   margin-left: 0.3em;
 }
@@ -261,21 +295,31 @@ header {
   margin-right: 0.4em;
 }
 
+.filter-options-toggle-btn {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.filter-options-folded {
+  display: none;
+}
+
 .btn,
-.folded {
+.buttons-group-folded {
+  font-family: Roboto, sans-serif;
   border: none;
   border-radius: 6px;
   cursor: pointer;
 }
 
 .btn:hover,
-.folded:hover {
+.buttons-group-folded:hover {
   outline: 1px solid var(--font-color-dark);
   border-radius: 6px;
 }
 
 .btn:active,
-.folded:active {
+.buttons-group-folded:active {
   transform: scale(0.93);
   outline: 1px solid var(--font-color-dark);
   border-radius: 6px;
@@ -285,33 +329,19 @@ header {
 
 .module {
   width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.section-title {
-  width: 100%;
-  background: var(--primary-color-dark);
-  font-size: 1.8rem;
-  color: var(--font-color-light);
-  padding: 1em;
-  text-transform: uppercase;
-  text-align: center;
-  margin: 0;
-}
-
-.section-title .fas {
-  margin: 0 0.5em;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .module--container {
   background: var(--primary-color);
   width: 100%;
-  margin: 0;
-  padding: 0;
   font-size: 1.6rem;
   overflow-y: auto;
-  max-height: calc(100vh - 145px);
+
+  height: 100px; /* important for overflow scrolling to work with flex! (it works actually as min height) */
+  flex-grow: 1; /* stretch height of item to fill rest of free space  (need flex / column parent) with set height */
 }
 
 .search-form {
@@ -329,10 +359,10 @@ header {
 }
 
 .search-input {
+  font-family: Roboto, sans-serif;
   font-size: 1.8rem;
   width: 100%;
   padding: 0.2em;
-  margin: 0;
   align-self: center;
 }
 
@@ -361,9 +391,6 @@ header {
   align-items: center;
   justify-content: center;
   text-align: center;
-  /* overflow-wrap: break-word; */
-  /* hyphens: auto; */
-  /* font-weight: bold; */
   border: 1px solid var(--primary-color-dark);
 }
 
@@ -373,17 +400,17 @@ header {
   z-index: 999;
 }
 
-.module--row.heading .cell {
-  background: var(--primary-color-darker);
-  color: var(--font-color-light);
-  font-size: 1.2rem;
-  letter-spacing: 0.03em;
-}
-
 .module--row .cell {
   background: var(--primary-color);
   color: var(--font-color-dark);
-  font-weight: bold;
+}
+
+.module--row.heading .cell {
+  background: var(--primary-color-dark);
+  color: #fff;
+  font-size: 1.2rem;
+  letter-spacing: 0.03em;
+  border: 1px solid var(--primary-color-darker);
 }
 
 .module--row:nth-child(even) .cell {
@@ -396,6 +423,7 @@ header {
 
 .module--row .cell:nth-child(2) {
   grid-area: name;
+  justify-content: start;
 }
 
 .module--row .cell:nth-child(3) {
@@ -446,14 +474,40 @@ header {
   grid-area: llll;
 }
 
-@media (min-width: 1210px) {
+/* MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA */
+/* MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA */
+/* MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA */
+/* MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA */
+/* MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA */
+
+@media (max-width: 400px) {
+  html,
   body {
-    padding: 0 5px;
+    height: -webkit-fill-available; /* fix for mobile overflow under bottom navbar */
+  }
+}
+
+@media (min-width: 650px) {
+  /* module module module module module */
+
+  .module--row {
+    grid-template: repeat(2, auto) / 40px repeat(5, 0.33fr) 1fr 1fr 0.5fr 0.5fr;
+    grid-template-areas: unset;
+    grid-template-areas:
+      "cbox gggg name name name name name name jjjj kkkk"
+      "aaaa bbbb cccc dddd eeee ffff hhhh iiii llll llll";
   }
 
-  .main {
-    display: flex;
+  .module--row input[type="checkbox"] {
+    transform: scale(1.2);
   }
+
+  .module--row .cell {
+    margin: -0.4px;
+  }
+}
+@media (min-width: 1210px) {
+  /* unset unset  unset unset unset unset */
 
   .nav-overlay {
     position: unset;
@@ -468,24 +522,88 @@ header {
     visibility: unset;
   }
 
-  .hide {
+  .hide-overlay {
     visibility: unset;
     opacity: unset;
   }
 
-  #nav-tools.hide {
+  #nav-tools.hide-overlay {
     transform: unset;
   }
 
-  #nav-modules.hide {
+  #nav-modules.hide-overlay {
     transform: unset;
   }
 
   .nav-toolbar {
     position: unset;
-    height: 100%;
+  }
+
+  #nav-modules .nav-toolbar {
+    left: unset;
+  }
+
+  #nav-tools .nav-toolbar {
+    right: unset;
+  }
+
+  .nav-btn {
+    font-size: 1.5rem;
+    padding: 0.9em 0;
+  }
+
+  .group-title {
+    font-size: 1.5rem;
+    padding: 0.7em 0;
+  }
+
+  .buttons-group-folded {
+    height: 45px !important; /* "auto" disables transition */
+  }
+
+  .nav-toolbar {
+    width: 180px;
+  }
+
+  .filter-options-toggle-btn {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  /* body container  body container*/
+
+  body {
+    padding: 5px;
+  }
+
+  .container {
+    max-width: var(--main-container-max-width);
+    background: none;
+  }
+
+  .header-title {
+    font-size: 2.5rem;
+    padding: 0.3em;
+    text-align: left;
+    letter-spacing: 0.6em;
+    margin-bottom: 5px;
+    border-radius: 6px;
+  }
+
+  .header-title .fas {
+    font-size: 1.3em;
+    margin-left: 0.5em;
+  }
+
+  .section-title {
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
+  }
+
+  /* nav nav nav nav nav nav nav nav nav */
+
+  .nav-toggle {
+    display: none;
   }
 
   #nav-modules {
@@ -498,98 +616,40 @@ header {
     padding-left: 5px;
   }
 
-  #nav-modules .nav-toolbar {
-    left: unset;
-  }
-
-  #nav-tools .nav-toolbar {
-    right: unset;
-  }
-
-  .nav-toggle {
-    display: none;
-  }
-
-  .filter-opt {
-    display: flex;
-    justify-content: space-between;
-    margin: 0.5em 0.2em;
-  }
-
-  .filter-opt * {
-    font-size: 2rem;
-  }
-
-  .title {
-    font-size: 2.5rem;
-    padding: 0.3em;
-    text-align: left;
-    letter-spacing: 0.6em;
-    margin: 0.2em 0;
-    border-radius: 6px;
-  }
-
-  .title .fas {
-    font-size: 3rem;
-    margin-left: 0.5em;
-  }
-
-  .container {
-    background: none;
-    height: 100%;
-    width: 100%;
-    max-width: var(--main-container-max-width);
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-  }
-
-  .module--container {
-    height: 100%;
-    height: calc(100vh - 172px);
-  }
-
-  .section-title {
+  .nav-toolbar {
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
   }
 
-  .module--row {
-    grid-template: repeat(2, auto) / 40px repeat(5, 0.33fr) 1fr 1fr 0.5fr 0.5fr;
-    grid-template-areas: unset;
-    grid-template-areas:
-      "cbox gggg name name name name name name jjjj kkkk"
-      "aaaa bbbb cccc dddd eeee ffff hhhh iiii llll llll";
+  .filter-opt {
+    margin: 0.5em 0.2em;
   }
 
-  .module--row .cell:nth-child(2) {
-    grid-area: name;
-    justify-content: start;
-  }
-
-  .module--row input[type="checkbox"] {
-    transform: scale(1.2);
-  }
-
-  .module--row.heading .cell {
-    background: var(--primary-color-darker);
-    color: var(--font-color-light);
-    font-size: 1.2rem;
-    letter-spacing: 0.03em;
-  }
-
-  .module--row .cell {
-    margin: -0.4px;
-    font-weight: unset;
-  }
-
-  .filter-header h2 {
-    font-size: 2.5rem;
+  .filter-opt * {
+    font-size: 1.6rem;
   }
 
   #arch-checkbox {
-    transform: scale(1.5);
+    transform: scale(1.3);
     margin-right: 0.2em;
+  }
+
+  .search-label,
+  .search-input {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1800px) {
+  .container {
+    max-width: var(--main-container-max-width-super-wide);
+  }
+
+  .module--row {
+    grid-template:
+      repeat(1, auto) / 40px 0.5fr 4fr repeat(2, 1fr) repeat(6, 0.6fr)
+      repeat(3, 1.5fr);
+    grid-template-areas: unset;
+    grid-template-areas: "cbox gggg name jjjj kkkk aaaa bbbb cccc dddd eeee ffff hhhh iiii llll";
   }
 }

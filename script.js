@@ -3,6 +3,8 @@ const modulesBtn = document.getElementById("nav-modules-open-btn");
 const navTools = document.getElementById("nav-tools");
 const navModules = document.getElementById("nav-modules");
 const filterForm = document.getElementById("filter");
+const filterOptToggleBtn = document.getElementById("filter-options-toggle-btn");
+const filterOptions = document.getElementById("filter-options");
 
 let buttonsGroups = document.getElementsByClassName("nav-buttons-group");
 buttonsGroups = [...buttonsGroups]; // convert HTML collection to array
@@ -24,10 +26,13 @@ filterForm.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
+filterOptToggleBtn.addEventListener("click", (e) => toggleFilterOptions());
+
 buttonsGroups.forEach((e) =>
   e.addEventListener("click", () => {
     foldAllButtonGroups();
-    e.classList.remove("folded");
+    setButtonsGroupsHeights();
+    e.classList.remove("buttons-group-folded");
   })
 );
 
@@ -42,46 +47,55 @@ buttons.forEach((btn) =>
 
 function foldAllButtonGroups() {
   buttonsGroups.forEach((element) => {
-    if (!element.classList.contains("folded")) {
-      element.classList.add("folded");
+    if (!element.classList.contains("buttons-group-folded")) {
+      element.classList.add("buttons-group-folded");
     }
   });
 }
 
 function toggleNavTools() {
-  if (navTools.classList.contains("hide")) {
-    navTools.classList.remove("hide");
+  if (navTools.classList.contains("hide-overlay")) {
+    navTools.classList.remove("hide-overlay");
   } else {
-    navTools.classList.add("hide");
+    navTools.classList.add("hide-overlay");
+  }
+}
+
+function toggleFilterOptions() {
+  if (filterOptions.classList.contains("filter-options-folded")) {
+    filterOptions.classList.remove("filter-options-folded");
+  } else {
+    filterOptions.classList.add("filter-options-folded");
   }
 }
 
 function hideNavTools() {
-  if (!navTools.classList.contains("hide")) {
-    navTools.classList.add("hide");
+  if (!navTools.classList.contains("hide-overlay")) {
+    navTools.classList.add("hide-overlay");
   }
 }
 
 function toggleNavModules() {
-  if (navModules.classList.contains("hide")) {
-    navModules.classList.remove("hide");
+  if (navModules.classList.contains("hide-overlay")) {
+    navModules.classList.remove("hide-overlay");
   } else {
-    navModules.classList.add("hide");
+    navModules.classList.add("hide-overlay");
   }
 }
 
 function hideNavModules() {
-  if (!navModules.classList.contains("hide")) {
-    navModules.classList.add("hide");
+  if (!navModules.classList.contains("hide-overlay")) {
+    navModules.classList.add("hide-overlay");
   }
 }
 
 function setButtonsGroupsHeights() {
   //calculate height of class elements .nav-buttons-group
-  //for CSS transition proper working
+  //for CSS transition height proper working
 
-  const groupContainerHeight = 64;
-  const buttonHeightWithMargin = 68;
+  const groupContainerHeight =
+    [...buttonsGroups[0].children][0].scrollHeight + 6;
+  const buttonHeightWithMargin = buttons[0].offsetHeight + 8;
 
   buttonsGroups.forEach(
     (buttonsGroup) =>
@@ -106,7 +120,7 @@ const rowHTML = `<div class="module--row">
 <div class="cell" id="">1000</div>
 <div class="cell" id="">1000</div>
 <div class="cell" id="">1000</div>
-<div class="cell" id="">1000</div>
+<div class="cell" id="">${window.innerHeight}</div>
 <div class="cell" id="">22,35</div>
 <div class="cell" id="">10001</div>
 <div class="cell" id="">TME Sp z o.o.</div>
@@ -118,7 +132,7 @@ const rowHTML = `<div class="module--row">
 
 let rowsHTML = "";
 
-for (let i = 0; i < 500; i++) {
+for (let i = 0; i < 50; i++) {
   rowsHTML += rowHTML;
 }
 
