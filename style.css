@@ -481,9 +481,15 @@ header {
 /* MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA MEDIA */
 
 @media (max-width: 400px) {
-  html,
+  /* html,
   body {
-    height: -webkit-fill-available; /* fix for mobile overflow under bottom navbar */
+    height: -webkit-fill-available;  
+  } */
+
+  /* fix for mobile overflow under bottom navbar  */
+
+  .nav-filter-container {
+    margin-bottom: 60px;
   }
 }
 
