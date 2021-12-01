@@ -136,4 +136,4 @@ for (let i = 0; i < 50; i++) {
   rowsHTML += rowHTML;
 }
 
-document.getElementById("module-container").innerHTML += rowsHTML;
+document.getElementById("rows-container").innerHTML += rowsHTML;
